@@ -7,7 +7,16 @@ import { getSession } from 'next-auth/react'
 import { Textarea } from '@/components/textArea';
 import { FiShare2, FiTrash } from 'react-icons/fi';
 
-export default function Dashboard() {
+import { db } from '@/services/firebaseConnection' 
+import { addDoc, collection } from 'firebase/firestore'
+
+interface DashboardsProps {
+    user: {
+        email: string;
+    }
+}
+
+export default function Dashboard({ user }: DashboardsProps) {
     const [input, setInput] = useState("")
     const [publicTask, setPublicTask] = useState(false)
 
@@ -15,12 +24,24 @@ export default function Dashboard() {
         setPublicTask(e.target.checked)
     }
 
-    function handleRegisterTask(e: FormEvent) {
+    async function handleRegisterTask(e: FormEvent) {
         e.preventDefault();
 
         if(input === "") return;
 
-        alert("TESTE")
+        try{
+            await addDoc(collection(db, "tarefas"), {
+                tarefa: input,
+                created: new Date(),
+                user: user?.email,
+                public: publicTask
+            });
+
+            setInput("")
+            setPublicTask(false)
+        }catch(err){
+            console.log(err);
+        }
     }
 
 
@@ -97,6 +118,10 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     }
 
     return {
-        props: {},
+        props: {
+            user: {
+                email: session?.user?.email
+            }
+        },
     };
 };
