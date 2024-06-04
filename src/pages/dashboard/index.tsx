@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import styles from './styles.module.css'
 import Head from 'next/head'
 
@@ -7,6 +8,22 @@ import { Textarea } from '@/components/textArea';
 import { FiShare2, FiTrash } from 'react-icons/fi';
 
 export default function Dashboard() {
+    const [input, setInput] = useState("")
+    const [publicTask, setPublicTask] = useState(false)
+
+    function handleChangePublic(e: ChangeEvent<HTMLInputElement>) {
+        setPublicTask(e.target.checked)
+    }
+
+    function handleRegisterTask(e: FormEvent) {
+        e.preventDefault();
+
+        if(input === "") return;
+
+        alert("TESTE")
+    }
+
+
     return (
         <div className={styles.container}>
             <Head>
@@ -17,13 +34,17 @@ export default function Dashboard() {
                 <section className={styles.content}>
                     <div className={styles.contentForm}>
                         <h1 className={styles.title}>Qual a sua tarefa?</h1>
-                        <form>
+                        <form onSubmit={handleRegisterTask}>
                             <Textarea
                                 placeholder="Digite qual sua tarefa..."
+                                value={input}
+                                onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => setInput(e.target.value)}
                             />
                             <div className={styles.checkboxArea}>
                                 <input type="checkbox"
                                 className={styles.checkbox}
+                                checked={publicTask}
+                                onChange={handleChangePublic}
                                 />
                                 <label>Deixar tarefa pública?</label>
                             </div>
