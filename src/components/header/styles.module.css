@@ -10,7 +10,7 @@
 .content {
     padding: 0 18px;
     width: 100%;
-    max-width: 100%;
+    max-width: 1024px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -47,7 +47,7 @@
     font-weight: bold;
 }
 
-.nav{
+.nav {
     display: flex;
     align-items: center;
 }
