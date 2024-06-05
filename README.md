@@ -16,8 +16,8 @@
 <h2 id="layout">🎨 Layout</h2>
 
 <p align="center">
-    <img src="./public/assets/tarefa.png" alt="Image 1" width="400px">
-    <img src="./public/assets/tarefa1.png" alt="Image 2" width="400px">
+    <img src="./public/assets/tarefa1.png" alt="Image 1" width="400px">
+    <img src="./public/assets/tarefa2.png" alt="Image 2" width="400px">
 </p>
 
 <h2 id="tech">💻 Technologies</h2>
