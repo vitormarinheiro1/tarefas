@@ -93,7 +93,7 @@ export default function Dashboard({ user }: DashboardsProps) {
         }
     }
 
-    async function handleShare(id: string){
+    async function handleShare(id: string) {
         await navigator.clipboard.writeText(
             `${process.env.NEXT_PUBLIC_URL}/task/${id}`
         );
@@ -101,7 +101,7 @@ export default function Dashboard({ user }: DashboardsProps) {
         alert("URL Copiada com sucesso!");
     }
 
-    async function handleDeleteTask(id: string){
+    async function handleDeleteTask(id: string) {
         const docRef = doc(db, "tarefas", id)
         await deleteDoc(docRef)
     }
@@ -146,7 +146,7 @@ export default function Dashboard({ user }: DashboardsProps) {
                             {item.public && (
                                 <div className={styles.tagContainer}>
                                     <label className={styles.tag}>PUBLICO</label>
-                                    <button className={styles.shareButton} onClick={ () => handleShare(item.id)}>
+                                    <button className={styles.shareButton} onClick={() => handleShare(item.id)}>
                                         <FiShare2
                                             size={12}
                                             color='#3183ff'
@@ -162,7 +162,7 @@ export default function Dashboard({ user }: DashboardsProps) {
                                 ) : (
                                     <p>{item.tarefa}</p>
                                 )}
-                                <button className={styles.trashButton} onClick={ () => handleDeleteTask(item.id)}>
+                                <button className={styles.trashButton} onClick={() => handleDeleteTask(item.id)}>
                                     <FiTrash
                                         size={24}
                                         color='#ea3140'
