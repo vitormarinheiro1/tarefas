@@ -25,7 +25,6 @@
 - Nextjs
 - NextAuth
 - Firebase
-- Styled Components
 
 <h2 id="started">🚀 Getting started</h2>
 
